@@ -993,6 +993,10 @@ module TestTree
 
       require 'structured_warnings'
 
+      DeprecatedMethodWarning.disable do
+        assert(@root.isRoot?)   # Test if the original method is really called
+      end
+
       meth_names_to_test.each do |meth_name|
         assert_warn(DeprecatedMethodWarning) {@root.send(meth_name)}
       end
